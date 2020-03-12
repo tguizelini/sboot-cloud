@@ -2,10 +2,9 @@ server:
   port: 8888
 
 spring:
-  profiles:
-    active: native
   cloud:
     config:
       server:
-        native:
-          search-locations: /Users/tguizelini/Src/cloud-floricultura/config-repo
+        git:
+          uri: https://github.com/tguizelini/sboot-cloud-floricultura/tree/master/config-repo
+          search-paths: fornecedor
