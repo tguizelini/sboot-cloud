@@ -1,5 +1,0 @@
-server:
-  port: 8088
-
-application:
-  name: oauth-server

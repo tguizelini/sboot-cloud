@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.security.Principal;
 
 @RestController
-@RequestMapping("/oauth")
+@RequestMapping
 public class AuthController {
-
     @GetMapping("/user")
     public Principal getUserDetail(Principal user) {
         return user;

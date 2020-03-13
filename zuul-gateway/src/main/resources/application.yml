@@ -1,6 +1,10 @@
 server:
   port: 5555
 
+spring:
+  application:
+    name: gateway
+
 eureka:
   client:
     register-with-eureka: true
@@ -12,9 +16,9 @@ zuul:
   sensitive-headers:
     - Cookie, Authorization
 
-# management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include:
-#          - "routes"
+management:
+  endpoints:
+    web:
+      exposure:
+       include:
+         - "routes"
