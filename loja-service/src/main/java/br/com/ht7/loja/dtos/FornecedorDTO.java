@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class InfoFornecedorDTO {
+public class FornecedorDTO {
     private String endereco;
 }
