@@ -22,8 +22,6 @@ public class CompraService {
     public Compra realizaCompra(CompraDTO compra) {
         final String estado = compra.getEndereco().getEstado();
 
-        log.info(compra.toString());
-
         List<InfoFornecedorDTO> infoTmp = fornecedorClient.getFornecedorPorEstado(estado);
 
         InfoPedidoDTO infoPedido = fornecedorClient.realizaPedido(compra.getItems());
@@ -31,15 +29,12 @@ public class CompraService {
         InfoFornecedorDTO info = new InfoFornecedorDTO();
         info.setEndereco(infoTmp.get(0).getEndereco()); // pego o primeiro
 
-        log.info(info.toString());
-
         Compra novaCompra = new Compra();
 
         novaCompra.setPedidoId(infoPedido.getId());
         novaCompra.setTempoDePreparo(infoPedido.getTempoDePreparo());
         novaCompra.setEnderecoDestino(info.getEndereco());
-
-        log.info(info.getEndereco());
+        novaCompra.setStatus("COMPRA_REALIZADA");
 
         return novaCompra;
     }
@@ -50,6 +45,7 @@ public class CompraService {
         novaCompra.setEnderecoDestino(compra.getEndereco().toString());
         novaCompra.setPedidoId(null);
         novaCompra.setTempoDePreparo(null);
+        novaCompra.setStatus("COMPRA_EM_PROCESSAMENTO");
 
         return novaCompra;
     }

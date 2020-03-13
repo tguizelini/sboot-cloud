@@ -7,15 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/compras")
+@RequestMapping("compra")
 public class CompraController {
     @Autowired
     private CompraService service;
-
-    @GetMapping
-    public String message() {
-        return "funcionando..";
-    }
 
     @PostMapping
     public Compra realizaCompra(@RequestBody CompraDTO compra) {

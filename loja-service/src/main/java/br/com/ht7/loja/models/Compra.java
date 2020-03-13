@@ -14,4 +14,5 @@ public class Compra {
     private String pedidoId;
     private Integer tempoDePreparo;
     private String enderecoDestino;
+    private String status;
 }
