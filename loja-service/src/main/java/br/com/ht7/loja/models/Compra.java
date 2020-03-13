@@ -10,7 +10,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Compra {
-    private String id;
+    //private String id;
     private String pedidoId;
     private Integer tempoDePreparo;
     private String enderecoDestino;

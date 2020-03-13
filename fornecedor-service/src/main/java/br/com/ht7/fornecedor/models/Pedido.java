@@ -4,12 +4,14 @@ import br.com.ht7.fornecedor.enums.PedidoStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
 @Data
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Document
@@ -22,9 +24,4 @@ public class Pedido {
 	//@OneToMany(cascade = CascadeType.ALL)
 	//@JoinColumn(name = "pedidoId")
 	private List<PedidoItem> itens;
-
-	public Pedido(List<PedidoItem> itens) {
-		this.itens = itens;
-		this.status = PedidoStatus.RECEBIDO;
-	}
 }

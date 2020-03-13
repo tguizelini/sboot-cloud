@@ -1,8 +1,11 @@
 package br.com.ht7.fornecedor.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import br.com.ht7.fornecedor.enums.PedidoStatus;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +17,8 @@ import br.com.ht7.fornecedor.repositories.PedidoRepository;
 import br.com.ht7.fornecedor.repositories.ProdutoRepository;
 
 @Service
+@Slf4j
 public class PedidoService {
-	
 	@Autowired
 	private PedidoRepository pedidoRepository;
 	
@@ -29,8 +32,16 @@ public class PedidoService {
 		}
 		
 		List<PedidoItem> pedidoItens = toPedidoItem(itens);
-		Pedido pedido = new Pedido(pedidoItens);
+
+		Pedido pedido = new Pedido();
+
+		pedido.setId(null);
+		pedido.setStatus(PedidoStatus.RECEBIDO);
+		pedido.setItens(pedidoItens);
 		pedido.setTempoDePreparo(itens.size());
+
+		log.info(pedido.toString());
+
 		return pedidoRepository.save(pedido);
 	}
 	
@@ -39,11 +50,11 @@ public class PedidoService {
 	}
 
 	private List<PedidoItem> toPedidoItem(List<ItemDoPedidoDTO> itens) {
-		
-		List<String> idsProdutos = itens
-				.stream()
-				.map(item -> item.getId())
-				.collect(Collectors.toList());
+		List<String> idsProdutos = new ArrayList<String>();
+
+		itens.forEach(i -> {
+			idsProdutos.add(i.getId());
+		});
 		
 		List<Produto> produtosDoPedido = produtoRepository.findByIdIn(idsProdutos);
 		
@@ -52,8 +63,9 @@ public class PedidoService {
 			.map(item -> {
 				Produto produto = produtosDoPedido
 						.stream()
-						.filter(p -> p.getId() == item.getId())
-						.findFirst().get();
+						.filter(p -> p.getId().equals(item.getId()) )
+						.findFirst()
+						.get();
 				
 				PedidoItem pedidoItem = new PedidoItem();
 				pedidoItem.setProduto(produto);
@@ -61,6 +73,7 @@ public class PedidoService {
 				return pedidoItem;
 			})
 			.collect(Collectors.toList());
+
 		return pedidoItens;
 	}
 }
