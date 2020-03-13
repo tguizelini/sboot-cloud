@@ -1,0 +1,362 @@
+{
+	"info": {
+		"_postman_id": "7cb1207a-dd77-48c2-8fd9-3fa32fb3195f",
+		"name": "Cloud Floricultura",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Eureka - APPs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8761/eureka/apps",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8761",
+					"path": [
+						"eureka",
+						"apps"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Config Server - Fornecedor YML",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/fornecedor/default",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"fornecedor",
+						"default"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OAuth",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "lojapwd",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "loja",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "scope",
+							"value": "mobile",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "joao",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "joaopwd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5555/auth/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"auth",
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OAuth - User Detail",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "fed5e746-797c-49e0-8ed6-8aef95b435d0",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:5555/auth/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"auth",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Loja - Realizar Comprar",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "fed5e746-797c-49e0-8ed6-8aef95b435d0",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"items\": [\n\t\t{\n\t\t\t\"id\": \"5e6bef2ce396b12db988ad2f\",\n\t\t\t\"quantidade\": 5\n\t\t},\n\t\t{\n\t\t\t\"id\": \"5e6bef2ce396b12db988ad2f\",\n\t\t\t\"quantidade\": 1\n\t\t}\n\t],\n\t\"endereco\": {\n\t\t\"rua\": \"Rua da Maria\",\n\t\t\"numero\": 123,\n\t\t\"estado\": \"AM\"\n\t}\n\t\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5555/loja/compra",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"loja",
+						"compra"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fornecedor - Listar Fornecedores",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "fed5e746-797c-49e0-8ed6-8aef95b435d0",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5555/fornecedor/info",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"fornecedor",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fornecedor - Listar Produtos",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "fed5e746-797c-49e0-8ed6-8aef95b435d0",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5555/fornecedor/produto/SP",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"fornecedor",
+						"produto",
+						"SP"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fornecedor - Buscar  Por ID",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer fed5e746-797c-49e0-8ed6-8aef95b435d0",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/info/id/5e6ab44557ca2776073d6bb6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"info",
+						"id",
+						"5e6ab44557ca2776073d6bb6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fornecedor - Buscar  Por Estado",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer fed5e746-797c-49e0-8ed6-8aef95b435d0",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5555/fornecedor/info/estado/GO",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"fornecedor",
+						"info",
+						"estado",
+						"GO"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fornecedor - Excluir Por ID",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer fed5e746-797c-49e0-8ed6-8aef95b435d0",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5555/fornecedor/id/5e6998abed194b27df8ff678",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5555",
+					"path": [
+						"fornecedor",
+						"id",
+						"5e6998abed194b27df8ff678"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
