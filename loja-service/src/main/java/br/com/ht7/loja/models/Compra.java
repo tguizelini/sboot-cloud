@@ -1,4 +1,4 @@
-package br.com.ht7.loja.dtos;
+package br.com.ht7.loja.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,9 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class ItemDaCompraDTO {
+public class Compra {
     private String id;
-    private int quantidade;
+    private String pedidoId;
+    private Integer tempoDePreparo;
+    private String enderecoDestino;
 }

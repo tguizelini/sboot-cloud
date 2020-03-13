@@ -5,13 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.util.List;
-
 @Data
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class CompraDTO {
-    private List<ItemDaCompraDTO> items;
-    private EnderecoDTO endereco;
+public class InfoPedidoDTO {
+    private String id;
+    public Integer tempoDePreparo;
 }
